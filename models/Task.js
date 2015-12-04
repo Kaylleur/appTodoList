@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var tasks = [];
 
 module.exports = {
@@ -26,5 +27,23 @@ module.exports = {
         }
         tasks.splice(id, 1);
         callback(null, null);
+    },
+    edit: function(id, task, callback){
+        var exist = false;
+        if(task.name){
+            for (var i = 0; i < tasks.length; i++) {
+                exist = tasks[i].id == id;
+                if(tasks[i].id == id){
+                    task.id = id;
+                    tasks[i] = task;
+                    break;
+                }
+            }
+            if(!exist)return callback("Not Found");
+            return callback(null,task);
+        }else{
+            return callback("Invalid format")
+        }
+
     }
 };

@@ -41,6 +41,18 @@ describe("Task DB", function() {
         });
     });
 
+
+    it("should edit a task", function(done) {
+       Task.edit(testTask,{"name":"test"},function(err,data){
+           should.not.exists(err);
+           should.exists(data);
+           data.name.should.be.eql("test");
+           data.id.should.be.eql(testTask);
+           done();
+       });
+    });
+
+
     it("should delete the task", function(done) {
         Task.remove(testTask, function(err) {
             should.not.exists(err);

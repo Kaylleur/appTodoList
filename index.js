@@ -6,7 +6,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/todos', TasksController);
+app.use('/', TasksController);
 
 var server = app.listen(8000, function () {
   var host = server.address().address;

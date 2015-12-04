@@ -15,9 +15,18 @@ module.exports = {
             res.send(task);
         });
     },
-    post: function(req, res) {
+    add: function(req, res) {
         var task = req.body;
         Task.add(task, function(err, task) {
+            if (err) {
+                res.send({ err: err});
+            }
+            res.send(task);
+        });
+    },
+    edit: function(req, res) {
+        var task = req.body;
+        Task.edit(req.params.id,task, function(err, task) {
             if (err) {
                 res.send({ err: err});
             }
